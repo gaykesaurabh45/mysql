@@ -1,0 +1,90 @@
+[comp@localhost ~]$ su
+Password: 
+
+[root@localhost comp]# sudo mysql -u root -p
+Enter password: 
+
+
+create database college;
+
+use college;
+
+create table Student_Details(Student_Id int (2) not null auto_increment, Name varchar (35) not null, Address varchar(50) not null, primary key(Student_Id));
+
+insert into Student_Details(Name,Address)values('Pooja Rao','Loni kd'),('Pratiksha Lahamage','Adgaon'),('Rutuja Kasar','Chinchpur');
+
+select * from Student_Details;
+
+create table Student_Marks(Student_Id int (2) not null auto_increment, Total_Marks int(20), primary key(Student_Id));
+
+insert into Student_Marks(Total_Marks)values(42),(49),(45);
+
+select * from Student_Marks;
+
+insert into Student_Details(Name,Address) values('Snehal Sadaphal','Rahata'),('Snehal Borhade','Durgapur'),('Aditi Andhale','Pratappur');
+
+insert into Student_Marks(Total_Marks) values(41),(35),(46);
+
+
+1) Creating a View from a single table:
+
+CREATE VIEW DetailsView AS SELECT Name, Address FROM Student_Details;
+
+To see data from a view:
+
+SELECT * FROM DetailsView;
+
+CREATE VIEW StudentNamesView AS SELECT Student_ID, Name FROM Student_Details;
+
+To see data from a view:
+
+SELECT * FROM StudentNamesView;
+
+
+2) Creating View from Multiple Tables:
+
+CREATE VIEW MarksView AS SELECT 
+Student_Details.Name,
+Student_Details.Address,
+Student_Marks.Total_Marks FROM Student_Details, Student_Marks WHERE Student_Details.Student_ID = Student_Marks.Student_ID;
+
+
+select * from MarksView;
+
+
+3) Updating View:
+
+INSERT INTO DetailsView (Name, Address) VALUES ("Suresh", "Loni");
+
+select * from DetailsView;
+
+select * from Student_Details;
+
+
+4) Deleting a row from a View:
+
+DELETE FROM DetailsView WHERE Name = "Suresh";
+
+SELECT * FROM DetailsView;
+
+SELECT * FROM Student_Details;
+
+5) Deleting a View:
+
+Drop View DetailsView;
+
+SELECT * FROM DetailsView;
+
+SELECT * FROM Student_Detail;
+
+6) Drop View StudentNamesView;
+
+select * from StudentNamesView;
+
+select * from Student_Details;
+
+SELECT * FROM Student_Marks;
+
+
+
+

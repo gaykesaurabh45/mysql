@@ -1,0 +1,86 @@
+
+SQL> create table library(bno number(5), bname varchar(20), author varchar(20), allowed_days number(5)); 
+
+Table created. 
+
+SQL> insert into library values(1,'JAVA','Mr.Katre',10); 
+
+1 row created. 
+
+SQL> insert into library values(2,'os','Mr.Sultania',15); 
+
+1 row created. 
+
+SQL> insert into library values(3,'oops','Mr.Murti',15); 
+
+1 row created.
+
+SQL> create table library_audit(bno number(5), old_all_days number(5), new_all_days number(5)); 
+
+Table created. 
+
+
+
+
+create or replace trigger tr1 
+
+    before update or delete on library
+
+    for each row 
+
+  begin 
+    insert into library_audit values(:new.bno, :old.allowed_days, :new.allowed_days); 
+
+    end; 
+
+    / 
+
+
+
+SQL> select * from library; 
+
+       BNO BNAME		AUTHOR		     ALLOWED_DAYS 
+---------- -------------------- -------------------- ------------ 
+	 1 JAVA 		Mr.Katre		       10 
+	 2 os			Mr.Sultania		       15 
+	 3 oops 		Mr.Murti		       15 
+
+SQL> update library set allowed_days=15 where bno=1; 
+ 
+1 row updated. 
+
+
+
+SQL> select * from library; 
+
+       BNO BNAME		AUTHOR		     ALLOWED_DAYS 
+---------- -------------------- -------------------- ------------ 
+	 1 JAVA 		Mr.Katre		       15 
+	 2 os			Mr.Sultania		       15 
+	 3 oops 		Mr.Murti		       15 
+
+SQL> select * from library_audit; 
+
+       BNO OLD_ALL_DAYS NEW_ALL_DAYS 
+---------- ------------ ------------ 
+	 1	     10 	  15 
+
+SQL> delete from library where bno=1; 
+
+1 row deleted. 
+
+
+SQL> select * from library; 
+
+       BNO BNAME		AUTHOR		     ALLOWED_DAYS 
+---------- -------------------- -------------------- ------------ 
+	 2 os			Mr.Sultania		       15 
+	 3 oops 		Mr.Murti		       15 
+
+SQL> select * from library_audit; 
+
+       BNO OLD_ALL_DAYS NEW_ALL_DAYS 
+---------- ------------ ------------ 
+	 1	     10 	  15 
+	 1	     15 
+

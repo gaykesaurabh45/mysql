@@ -1,0 +1,80 @@
+A) Creating a table with a primary key example:
+
+create table if not exists products(
+product_code int(2) primary key not null, 
+product_name varchar(50) not null);
+
+insert into products(product_code, product_name) 
+values('1','TV');
+
+insert into products(product_code, product_name) 
+values('2','Cooler');
+
+insert into products(product_code, product_name) 
+values('3','Fan');
+
+select * from products;
+
+insert into products(product_code, product_name) 
+values('3','Fridge');
+
+B) Creating a table with the primary key as an auto_increment column:
+
+create table categories(category_id int auto_increment, 
+name varchar(50) not null, 
+primary key (category_id));
+
+insert into categories(name) values 
+('Gadgets'), ('Accessories');
+
+select * from categories;
+
+C) Foreign key constraint examples:
+
+create table customer(
+customerid int auto_increment,
+name varchar(100) not null,
+primary key(customerid));
+
+insert into customer(name) values 
+('Pranoti'),('Pallavi');
+
+select * from customer;
+
+create table orders(
+    -> orderid int auto_increment,
+    -> ordernumber int not null,
+    -> customerid int,
+    -> primary key(orderid),
+    -> constraint fk_customer
+    -> foreign key(customerid)
+    -> references customer(customerid));
+
+insert into orders(ordernumber, customerid) values
+(1,1),
+(2,1),
+(3,2);
+
+select * from orders;
+
+select * from customers;
+
+select customer.*, orders.* from customer, 
+orders where customer.customerid = orders.customerid;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

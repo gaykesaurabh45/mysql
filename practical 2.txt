@@ -1,0 +1,49 @@
+TRUNCATE will delete only data and not the table:
+
+MariaDB [te]> truncate table student;
+
+DROP will delete the data as well as the table:
+
+MariaDB [te]> drop table student;
+
+ALTER statement:
+
+1) CHANGE: renaming and existing column:
+
+MariaDB [te]> alter table student change class std varchar(30); 
+
+2) MODIFY: changing the structure of a column and added constraint not null:
+
+MariaDB [te]> alter table student modify rollno int(3) not null;
+
+MariaDB [te]> insert into student values('4',"Prachi Sawanti", "IT", "T.E.");
+
+MariaDB [te]> MariaDB [te]> insert into student values('5','','','');
+
+3) ALTER: lets you change column options (SET DEFAULT to a Column).
+
+MariaDB [te]> desc student;
+
+MariaDB [te]> alter table student alter course set default 'Mechanical Engineering';
+
+MariaDB [te]> Select default (course) from student;
+
+4) Drop Default value:
+
+MariaDB [te]> alter table student alter column course DROP DEFAULT;
+
+5) ADD():
+
+MariaDB [te]> alter table student add(city varchar(20));
+
+MariaDB [te]> alter table student add(city varchar(20) default 'Delhi');
+
+5) DROP():
+
+MariaDB [te]> alter table student DROP city;
+
+MariaDB [te]> insert into student values('5',"Harshada Vikhe", "IT", "T.E.", "Loni");
+
+7) How to create a duplicate table of a existing table:
+
+MariaDB [te]> CREATE TABLE s AS SELECT * FROM student;

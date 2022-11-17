@@ -1,0 +1,61 @@
+MariaDB [(none)]> create database te;
+
+MariaDB [(none)]> show databases;
+
+MariaDB [(none)]> use te;
+
+MariaDB [te]> show tables;
+
+MariaDB [te]> drop database te;
+
+MariaDB [(none)]> show databases;
+
+MariaDB [(none)]> create database te;
+
+MariaDB [(none)]> use te;
+
+MariaDB [te]> show databases;
+
+MariaDB [te]> show tables;
+
+MariaDB [te]> create table student(rollno int(2), name varchar(35), course varchar(60), class varchar(5));
+
+MariaDB [te]> desc student;
+
+MariaDB [te]> drop table student;
+
+MariaDB [te]> show tables;
+
+MariaDB [te]> create table student(rollno int(2), name varchar(35), course varchar(60), class varchar(5));
+
+MariaDB [te]> show tables;
+
+MariaDB [te]> desc student;
+
+MariaDB [te]> insert into student values('1',"Manoj R. Kharde", "Computer Engineering", "T.E.");
+
+MariaDB [te]> insert into student values('2',"Ambre Rutuja", "Computer Engineering", "T.E.");
+
+MariaDB [te]> insert into student values('3',"Thorat Vaishnavi", "Computer Engineering", "T.E.");
+
+MariaDB [te]> select * from student;
+
+MariaDB [te]> drop table student;
+
+MariaDB [te]> drop database te;
+
+MariaDB [te]> quit;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
